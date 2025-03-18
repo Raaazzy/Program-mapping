@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tamak</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <style>
+        .custom-select {
+            border: none !important;
+            box-shadow: none !important;
+            background-color: transparent;
+        }
+
+        #checkBox {
+            transform: scale(1.8);
+            opacity: 0.9;
+        }
+
+        .scrollable-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    @RenderBody()
+
+    <footer class="container mb-4 mt-4 fixed-bottom">
+        <p class="float-end"><a href="#">Наверх</a></p>
+        <p>© Дипломная работа 2025 Омирбековой Дарии · </p>
+    </footer>
+
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="~/js/modal.js"></script>
+@await RenderSectionAsync("pageScripts", required: false)
+</body>
+</html>
