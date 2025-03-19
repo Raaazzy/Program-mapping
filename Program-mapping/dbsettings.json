@@ -1,5 +1,5 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "DESKTOP-93AN5I5\\MSSQLSERVER02;Database=ProgramMapping;Password=123;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true;Encrypt=false"
+    "DefaultConnection": "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=kantarina1"
   }
 }

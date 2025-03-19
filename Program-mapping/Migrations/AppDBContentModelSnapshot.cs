@@ -2,13 +2,13 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Tamak.Data;
 
 #nullable disable
 
-namespace Tamak.Migrations
+namespace Program_mapping.Migrations
 {
     [DbContext(typeof(AppDBContent))]
     partial class AppDBContentModelSnapshot : ModelSnapshot
@@ -17,10 +17,266 @@ namespace Tamak.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("public")
                 .HasAnnotation("ProductVersion", "7.0.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Program_mapping.Data.Models.ControlElement", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("DisciplineId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Format")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<bool>("IsBlocking")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsExam")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DisciplineId");
+
+                    b.ToTable("ControlElements", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.ControlElementResultProgram", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("ControlElementId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ProgramId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ResultId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ControlElementId");
+
+                    b.HasIndex("ProgramId");
+
+                    b.HasIndex("ResultId");
+
+                    b.ToTable("ControlElementResultPrograms", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Course", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("DisciplineId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Number")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DisciplineId");
+
+                    b.ToTable("Courses", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Discipline", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Branch")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("EducationType")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Faculty")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Disciplines", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.EducationProgram", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Annotation")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EducationProgram", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Module", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CourseId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Number")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Modules", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.ProgramDiscipline", b =>
+                {
+                    b.Property<long>("ProgramId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("DisciplineId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("ProgramId", "DisciplineId");
+
+                    b.HasIndex("DisciplineId");
+
+                    b.ToTable("ProgramDisciplines", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.ProgramSection", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("ProgramId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SectionId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProgramId");
+
+                    b.HasIndex("SectionId");
+
+                    b.ToTable("ProgramSections", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Result", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Results", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Section", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sections", "public");
+                });
 
             modelBuilder.Entity("Tamak.Data.Models.Assortiment", b =>
                 {
@@ -28,7 +284,7 @@ namespace Tamak.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -38,7 +294,7 @@ namespace Tamak.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Assortiments", (string)null);
+                    b.ToTable("Assortements", "public");
                 });
 
             modelBuilder.Entity("Tamak.Data.Models.Basket", b =>
@@ -47,7 +303,7 @@ namespace Tamak.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -57,7 +313,7 @@ namespace Tamak.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Baskets", (string)null);
+                    b.ToTable("Baskets", "public");
                 });
 
             modelBuilder.Entity("Tamak.Data.Models.Order", b =>
@@ -66,31 +322,30 @@ namespace Tamak.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long?>("BasketId")
-                        .IsRequired()
                         .HasColumnType("bigint");
 
                     b.Property<string>("OrderDate")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<long?>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("ShopEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BasketId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders", "public");
                 });
 
             modelBuilder.Entity("Tamak.Data.Models.Product", b =>
@@ -99,42 +354,42 @@ namespace Tamak.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("AssortimentId")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("Available")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<byte[]>("Avatar")
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("bytea");
 
                     b.Property<int>("Category")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<byte[]>("Img")
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("bytea");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AssortimentId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products", "public");
                 });
 
             modelBuilder.Entity("Tamak.Data.Models.Time", b =>
@@ -143,26 +398,26 @@ namespace Tamak.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("AssortimentId")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("Avaliable")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("NumData")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("StringData")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AssortimentId");
 
-                    b.ToTable("Times", (string)null);
+                    b.ToTable("Times", "public");
                 });
 
             modelBuilder.Entity("Tamak.Data.Models.User", b =>
@@ -171,34 +426,130 @@ namespace Tamak.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<int>("Campus")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("City")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Role")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("Users", "public");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.ControlElement", b =>
+                {
+                    b.HasOne("Program_mapping.Data.Models.Discipline", "Discipline")
+                        .WithMany("ControlElements")
+                        .HasForeignKey("DisciplineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Discipline");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.ControlElementResultProgram", b =>
+                {
+                    b.HasOne("Program_mapping.Data.Models.ControlElement", "ControlElement")
+                        .WithMany("ControlElementResultPrograms")
+                        .HasForeignKey("ControlElementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Program_mapping.Data.Models.EducationProgram", "EducationProgram")
+                        .WithMany()
+                        .HasForeignKey("ProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Program_mapping.Data.Models.Result", "Result")
+                        .WithMany("ControlElementResultPrograms")
+                        .HasForeignKey("ResultId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ControlElement");
+
+                    b.Navigation("EducationProgram");
+
+                    b.Navigation("Result");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Course", b =>
+                {
+                    b.HasOne("Program_mapping.Data.Models.Discipline", "Discipline")
+                        .WithMany("Courses")
+                        .HasForeignKey("DisciplineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Discipline");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Module", b =>
+                {
+                    b.HasOne("Program_mapping.Data.Models.Course", "Course")
+                        .WithMany("Modules")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.ProgramDiscipline", b =>
+                {
+                    b.HasOne("Program_mapping.Data.Models.Discipline", "Discipline")
+                        .WithMany("ProgramDisciplines")
+                        .HasForeignKey("DisciplineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Program_mapping.Data.Models.EducationProgram", "EducationProgram")
+                        .WithMany("ProgramDisciplines")
+                        .HasForeignKey("ProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Discipline");
+
+                    b.Navigation("EducationProgram");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.ProgramSection", b =>
+                {
+                    b.HasOne("Program_mapping.Data.Models.EducationProgram", "EducationProgram")
+                        .WithMany("ProgramSections")
+                        .HasForeignKey("ProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Program_mapping.Data.Models.Section", "Section")
+                        .WithMany("ProgramSections")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EducationProgram");
+
+                    b.Navigation("Section");
                 });
 
             modelBuilder.Entity("Tamak.Data.Models.Assortiment", b =>
@@ -227,9 +578,7 @@ namespace Tamak.Migrations
                 {
                     b.HasOne("Tamak.Data.Models.Basket", "Basket")
                         .WithMany("Orders")
-                        .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BasketId");
 
                     b.Navigation("Basket");
                 });
@@ -254,6 +603,42 @@ namespace Tamak.Migrations
                         .IsRequired();
 
                     b.Navigation("Assortiment");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.ControlElement", b =>
+                {
+                    b.Navigation("ControlElementResultPrograms");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Course", b =>
+                {
+                    b.Navigation("Modules");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Discipline", b =>
+                {
+                    b.Navigation("ControlElements");
+
+                    b.Navigation("Courses");
+
+                    b.Navigation("ProgramDisciplines");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.EducationProgram", b =>
+                {
+                    b.Navigation("ProgramDisciplines");
+
+                    b.Navigation("ProgramSections");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Result", b =>
+                {
+                    b.Navigation("ControlElementResultPrograms");
+                });
+
+            modelBuilder.Entity("Program_mapping.Data.Models.Section", b =>
+                {
+                    b.Navigation("ProgramSections");
                 });
 
             modelBuilder.Entity("Tamak.Data.Models.Assortiment", b =>

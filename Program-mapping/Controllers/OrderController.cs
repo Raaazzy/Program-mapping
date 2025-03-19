@@ -1,6 +1,4 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
+﻿using Microsoft.AspNetCore.Mvc;
 using Tamak.Data.Enum;
 using Tamak.Data.Extensions;
 using Tamak.Data.Models;

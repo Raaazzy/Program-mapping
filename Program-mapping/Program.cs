@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDBContent>(options =>
-    options.UseSqlServer(connection));
+    options.UseNpgsql(connection));
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

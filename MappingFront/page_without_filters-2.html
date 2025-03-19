@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tamak</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .custom-select {
+            border: none !important;
+            box-shadow: none !important;
+            background-color: transparent;
+        }
+
+        #checkBox {
+            transform:scale(1.8);
+            opacity:0.9;
+        }
+
+        .scrollable-list {
+            max-height: 400px; 
+            overflow-y: auto;
+        }
+
+        .scrollable-list-main {
+            max-height: 420px; 
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3">
+            <form id="0-assortiment" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <input asp-for="currentUserId" value="0" name="currentUserId" type="radio" class="form-check-input" checked="" required="" style="display:none">
+                <div onclick='foodClick("#0-assortiment");' type="button">
+                    <span class="fs-2 text-primary" style="font-weight:700">Главная</span>
+                </div>
+            </form>
+
+
+        </header>
+    </div>
+
+
+    <div style="background-color: #f2f2f2; min-height: 666px;" class="album py-3">
+        <div class="container" id="shopList">
+            <div class="row">
+                <div class="col-md-2 order-md-1 mb-4">
+                  <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Фильтры</span>
+                  </h4>
+
+                  <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <select class="custom-select border-0 w-100 my-2" id="country" required>
+                                <option value="">Факультет компьютерных наук</option>
+                                <option>Азиатская школа бизнеса</option>
+                                <option>Высшая школа бизнеса</option>
+                                <option>Высшая школа урбанистики</option>
+                                <option>Гуманитарный факультет</option>
+                                <option>Институт образования</option>
+                                <option>Институт математики и компьютерных наук</option>
+                                <option>Институт статистических исследований и экономики знаний</option>
+                                <option>Институт химии и биомедицины</option>
+                                <option value="page_without_filters-2.html">Факультет компьютерных наук</option>
+                                <option>Факультет креативных индустрий</option>
+                                <option>Факультет мировой экономики и мировой политики</option>
+                                <option>Факультет права</option>
+                                <option>Факультет психологии</option>
+                                <option>Факультет социальных наук</option>
+                                <option>Факультет физики</option>
+                                <option>Факультет химии</option>
+                                <option>Факультет экономики</option>
+                                <option>Факультет экономических наук</option>
+                                <option>Факультет гуманитарных наук</option>
+                                <option>Факультет менеджмента</option>
+                                <option>Факультет прикладной политологии</option>
+                                <option>Факультет прикладной математики и информатики</option>
+                                <option>Факультет урбанистики</option>
+                                <option>Школа иностранных языков</option>
+                                <option>Школа дизайна</option>
+                              </select>
+                    
+                          </li>
+                          <li class="nav-item">
+                            <select class="custom-select border-0 w-100 my-2" id="country2" required>
+                                <option value="">Программа</option>
+                                <option>Анализ данных в биологии и медицине</option>
+                                <option>Анализ данных в девелопменте</option>
+                                <option>Аналитика больших данных</option>
+                                <option>Дизайн и разработка информационных продуктов</option>
+                                <option>Инженерия данных</option>
+                                <option>Искусственный интеллект</option>
+                                <option>Искусственный интеллект в маркетинге и управлении продуктом</option>
+                                <option>Исследования и предпринимательство в искусственном интеллекте</option>
+                                <option>Компьютерные науки и анализ данных</option>
+                                <option>Магистр по наукам о данных</option>
+                                <option>Математика машинного обучения</option>
+                                <option>Машинное обучение в цифровом продукте</option>
+                                <option>Науки о данных (Data Science)</option>
+                                <option value="page_without_filters-3.html">Программная инженерия</option>
+                                <option>Продуктовый подход и аналитика данных в HR-менеджменте</option>
+                                <option>Прикладная математика информатика</option>
+                                <option>Прикладной анализ данных</option>
+                                <option>Разработка игр и цифровых продуктов</option>
+                                <option>Разработка и внедрение комплексных бизнес-систем</option>
+                                <option>Системная и программная инженерия</option>
+                                <option>Системное программирование</option>
+                                <option>Современные компьютерные науки</option>
+                                <option>Финансовые технологии и анализ данных</option>
+                                <option>Экономика и анализ данных</option>
+                            </select>
+                          </li>
+
+
+                        <li class="nav-item">
+                            <select class="custom-select border-0 w-100 my-2" id="country" required>
+                                <option value="">Курс</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                          </li>
+                          <li class="nav-item">
+                            <select class="custom-select border-0 w-100 my-2" id="country" required>
+                                <option value="">Модуль</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                          </li>
+                    </ul>
+                  </div>
+                </div>
+
+                
+                <div class="col-md-6 order-md-2 mx-5">
+                  
+                    <div class="mb-3">
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="username" placeholder="Поиск" required="">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-2"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+                            </span>
+                            
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex flex-wrap gap-2">
+                          <a href=""><span class="badge bg-light text-dark p-2">Алгоритмы</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Базы данных</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Машинное обучение</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Экономика</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">История</span></a>
+                      
+                          <a href=""><span class="badge bg-light text-dark p-2">Дизайн</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Финансы</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Программирование</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Психология</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Статистика</span></a>
+                      
+                          <a href=""><span class="badge bg-light text-dark p-2">Физика</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Маркетинг</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Графика</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Биоинформатика</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Философия</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">Математика</span></a>
+                          <a href=""><span class="badge bg-light text-dark p-2">иностранный язык</span></a>
+                        </div>
+                      </div>
+        
+                    <div class="row mb-3 scrollable-list-main">
+                        
+
+                        <div class="col-md-12">
+                                <div class="card flex-md-row mb-2 box-shadow">
+                                    <div class="card-body d-flex flex-column align-items-start">
+                                        <div class="custom-control custom-checkbox">
+                                            <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                                Алгоритмы и Структура данных
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center p-3">
+                                        <input type="checkbox" class="custom-control-input me-2" id="checkBox" checked>
+                                    </div>
+                                </div>                  
+                          </div>
+
+                          
+                        <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <div class="custom-control custom-checkbox">
+                                        <h6 class="mb-0 text-dark custom-control-label">
+                                            Базы данных
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center p-3">
+                                    <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <div class="custom-control custom-checkbox">
+                                        <h6 class="mb-0 text-dark custom-control-label">
+                                            Вероятностные модели в машинном обучении
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center p-3">
+                                    <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <div class="custom-control custom-checkbox">
+                                        <h6 class="mb-0 text-dark custom-control-label">
+                                            Введение в анализ данных
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center p-3">
+                                    <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <div class="custom-control custom-checkbox">
+                                        <h6 class="mb-0 text-dark custom-control-label">
+                                            Введение в программирование
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center p-3">
+                                    <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                                </div>
+                            </div>
+                        </div>
+                    
+                        
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                          Программирование на Java
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox" checked>
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Программирование на C#
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox" checked>
+                              </div>
+                          </div>                        
+                          </div>
+                          <a href="page1-2.html" style="text-decoration: none;">
+                            <div class="col-md-12">
+                                <div class="card flex-md-row mb-2 box-shadow">
+                                  <div class="card-body d-flex flex-column align-items-start">
+                                      <div class="custom-control custom-checkbox">
+                                          <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                              Разработка и анализ требований
+                                          </h6>
+                                      </div>
+                                  </div>
+                                  <div class="d-flex align-items-center p-3">
+                                      <input type="checkbox" class="custom-control-input me-2 checkBox123123" id="checkBox" checked>
+                                  </div>
+                              </div>                        
+                              </div>
+                          </a>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Конструирование программного обеспечения
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3"> 
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox" checked>
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Основы Ios разработки
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox" checked>
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                            Нейронные сети
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox" checked>
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address" checked>
+                                          Функциональное программирование 
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox" checked>
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                          Экономика программной инженерии
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>  
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Алгоритмы и Структура данных
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Программирование на Java
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Конструирование программного обеспечения
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3"> 
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Основы Ios разработки
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                            Нейронные сети
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                          Функциональное программирование 
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                          Экономика программной инженерии
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>  
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Алгоритмы и Структура данных
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                      Программирование на C#
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Разработка и анализ требований
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Конструирование программного обеспечения
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3"> 
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Основы Ios разработки
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                            Нейронные сети
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                          Функциональное программирование 
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>                        
+                          </div>
+                          <div class="col-md-12">
+                            <div class="card flex-md-row mb-2 box-shadow">
+                              <div class="card-body d-flex flex-column align-items-start">
+                                  <div class="custom-control custom-checkbox">
+                                      <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                          Экономика программной инженерии
+                                      </h6>
+                                  </div>
+                              </div>
+                              <div class="d-flex align-items-center p-3">
+                                  <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                              </div>
+                          </div>  
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Алгоритмы и Структура данных
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                      Конструирование программного обеспечения
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3"> 
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                      Основы Ios разработки
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                          Нейронные сети
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Функциональное программирование 
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                        </div>                        
+                        </div>
+                        <div class="col-md-12">
+                          <div class="card flex-md-row mb-2 box-shadow">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <div class="custom-control custom-checkbox">
+                                    <h6 class="mb-0 text-dark custom-control-label" for="same-address">
+                                        Экономика программной инженерии
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center p-3">
+                                <input type="checkbox" class="custom-control-input me-2" id="checkBox">
+                            </div>
+                          </div>    
+                        </div>
+                    </div>        
+                    
+                  </form>
+                </div>
+
+                <div class="col-md-3 order-md-5">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Список дисциплин</span>
+                    </h4>
+                    <div class="scrollable-list my-3">
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Алгоритмы и структура данных
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Программирование на Java
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Программирование на C#
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Разработка и анализ требований
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Конструирование программного обеспечения
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Основы Ios разработки
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Нейронные сети
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Алгоритмы и структура данных
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Программирование на Java
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Программирование на C#
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Разработка и анализ требований
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Конструирование программного обеспечения
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Основы Ios разработки
+                                </p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <p class="custom-select border-0 w-100 my-2" id="country" required>
+                                    Нейронные сети
+                                </p>
+                            </li>
+                            <!-- Добавь больше элементов для проверки скролла -->
+                        </ul>
+                    </div>
+                    <a href="page2.html"><button class="btn btn-secondary btn-block w-100 my-1" type="submit">Построить граф схожести дисциплин</button></a>
+                    <a href="page4.html"><button class="btn btn-secondary btn-block w-100 my-1" type="submit">Построить дашборды</button></a>
+                    <a href="page3.html"><button class="btn btn-secondary btn-block w-100 my-1" type="submit">Построить облако тегов</button></a>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <footer class="container mb-4 mt-4 fixed-bottom">
+        <p class="float-end"><a href="#">Наверх</a></p>
+        <p>© Дипломная работа 2025 Омирбековой Дарии · </p>
+    </footer>
+
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="~/js/modal.js"></script>
+
+    <script>
+        document.getElementById('country').addEventListener('change', function() {
+          const selectedValue = this.value;
+          if (selectedValue !== '' && selectedValue !== 'none') {
+            window.location.href = selectedValue;
+          }
+        });
+
+        document.getElementById('country2').addEventListener('change', function() {
+          const selectedValue = this.value;
+          if (selectedValue !== '' && selectedValue !== 'none') {
+            window.location.href = selectedValue;
+          }
+        });
+      </script>
+</body>
+</html>

@@ -1,5 +1,4 @@
 ﻿using Automarket.Service.Implementations;
-using Azure;
 using Microsoft.EntityFrameworkCore;
 using Tamak.Data.Enum;
 using Tamak.Data.Extensions;
